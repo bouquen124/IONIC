@@ -1,23 +1,55 @@
+
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>estudiantes</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+   Estudiantes
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+
+  
+    </ion-buttons>
+  
+  
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let estudiante of estudiantes; let index = i">
+      <ion-item>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ estudiante.id }}</ion-card-subtitle>
+            <ion-card-title>{{ estudiante.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+         <p>c_clinica_id: {{ estudiante.c_clinica_id }}</p>
+         <p>c_profesional_id:{{ estudiante.c_profesional_id }}</p>
+         <p>telefono{{ estudiante.telefono }}</p>
+         <p>correo:{{ estudiante.correo }}</p>
+         <p>localidad:{{ estudiante.localidad }}</p>
 
-  <ion-card  *ngFor="let estudiante of estudiantes">
-    <ion-card-header>
-      <ion-card-subtitle>{{ estudiante.id }}</ion-card-subtitle>
-      <ion-card-title>{{ estudiante.nombre }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Correo:{{ estudiante.correo }}</p>
-  <p>Telefono:{{ estudiante.telefono }}</p>
-  <p>Localidad: {{ estudiante.localidad }}</p>
-  <p>Clinica:{{  estudiante.c_clinica_id}}</p>
-  <p>Profesional {{ estudiante.c_profesional_id }}</p>
-    </ion-card-content>
-  </ion-card>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-checkbox [checked]="estudiante.completed" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteEstudiante(estudiante.id, index)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
 
+        <ion-item-option (click)="updateEstudiantes()" color="success">
+          <ion-icon name="arrow-up-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
+
+

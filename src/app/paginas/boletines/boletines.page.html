@@ -1,23 +1,54 @@
+
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Boletines</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+    usuarios
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+
+  
+    </ion-buttons>
+  
+  
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let boletin of boletines; let index = i">
+      <ion-item>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ boletin.subtitulo }}</ion-card-subtitle>
+            <ion-card-title>{{ boletin.titulo }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+           <p>id:{{boletin.id  }}</p>
+           <p>c_profesional:{{ boletin.c_profesional_id }}</p>
+           
+<p>contenido:{{ boletin.contenido }}</p>
+<p>autor:{{ boletin.autor }}</p>
 
-<ion-card  *ngFor="let boletin of boletines">
-  <ion-card-header>
-    <ion-card-subtitle>{{ boletin.titulo }}</ion-card-subtitle>
-    <ion-card-title>{{ boletin.subtitulo }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-   <p>Autor:{{boletin.autor }} Profesional:{{boletin.c_profesional_id }}  </p>
-   <p>{{ boletin.contenido }}</p>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-checkbox [checked]="boletin.completed" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteBoletin(boletin.id, index)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
 
-
-  </ion-card-content>
-</ion-card>
-
-
+        <ion-item-option (click)="updateUsuarios()" color="success">
+          <ion-icon name="arrow-up-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
+

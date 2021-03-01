@@ -1,39 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>TIPOS</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Tareas
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+
+  
+    </ion-buttons>
+  
+  
+  
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-  <ion-content>
-    <ion-card  *ngFor="let tipo of tipos">
-      <ion-card-header >
-        <ion-card-subtitle>{{ tipo.id }}</ion-card-subtitle>
-        <ion-card-title>{{ tipo.nombre }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-    {{ tipo.descripcion }}
-      </ion-card-content>
-    </ion-card>
-  
+  <ion-list>
+    <ion-item-sliding *ngFor="let tipo of tipos; let index = i">
+      <ion-item>
+        <ion-label>Nombre: {{ tipo.nombre }}</ion-label>
+        <ion-label>Descripcion: {{ tipo.descripcion }}</ion-label>
+        
+        <ion-checkbox [checked]="tipo.completed" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteTipos(tipo.id,index)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
 
-
-
-    <form class="card m-3">
-      <input 
-              class="p-2 mb-2" placeholder="nombre"/>
-    
-      <input  
-              class="p-2 mb-2" placeholder="descripcion"/>
-    
-      <button (click)="addEstado()" class="btn btn-success">
-            Aceptar
-      </button>
-    </form>
-    
-  </ion-content>
-
- 
-
+        <ion-item-option (click)="updateTipos()" color="success">
+          <ion-icon name="arrow-up-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

@@ -1,24 +1,55 @@
+
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>casos</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+    usuarios
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+
+  
+    </ion-buttons>
+  
+  
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let caso of casos; let index = i">
+      <ion-item>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ caso.id }}</ion-card-subtitle>
+            <ion-card-title>{{ caso.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+           <p>descripcion:{{caso.descripcion  }}</p>
+           <p>fecha:{{ caso.fecha }}</p>
+           
+<p>c_profesional_id:{{ caso.c_profesional_id }}</p>
+<p>c_profesional_id:{{ caso.t_usuario_id }}</p>
+<p>c_profesional_id:{{ caso.c_estado_id }}</p>
 
-<ion-card *ngFor="let caso of casos">
-  <ion-card-header>
-    <ion-card-subtitle>{{ caso.id }}</ion-card-subtitle>
-    <ion-card-title>{{ caso.nombre }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
- <p>Fecha:{{ caso.fecha }}</p>
- <p>Descripcion:{{ caso.descripcion }}</p>
-<p>Estado:{{ caso.c_estado_id }}</p>
-<p> Profesional:{{ caso.c_profesional_id }}</p>
-<p> Usuario:{{ caso.t_usuario_id }}</p>
-  </ion-card-content>
-</ion-card>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-checkbox [checked]="caso.completed" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteCasos(caso.id, index)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
 
-
+        <ion-item-option (click)="updateCasos()" color="success">
+          <ion-icon name="arrow-up-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
+

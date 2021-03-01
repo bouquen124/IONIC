@@ -1,40 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Estado } from './Estado';
-
-
+import { Casos } from './casos'
 
 @Injectable({
   providedIn: 'root'
 })
-export class EstadoService {
-
+export class CasosService {
 
   constructor(private httpclient :HttpClient) { }
-  url ='http://127.0.0.1:8000/api/c_estados';
 
+  url ='http://127.0.0.1:8000/api/t_casos';
 
-  getEstados() {
+  getCasos() {
     const path = `${this.url}`;
     return this.httpclient.get <any>(path);
   }
-
-  createEstado(estado: Estado) {
+  createCasos(casos: Casos) {
     const path = `${this.url}`;
-    return this.httpclient.post<Estado>(path, estado); 
+    return this.httpclient.post<Casos>(path, casos); 
   
   }
 
-
-  deleteEstado(id: number) {
+  deleteCasos(id: number) {
     const path = `${this.url}/${id}`;
     return this.httpclient.delete(path);
   }
 
 
- 
-  updateEstado(estado: Estado) {
-    const path = `${this.url}/${estado.id}`;
-    return this.httpclient.put<Estado>(path, estado);
+
+  updateCasos(casos: Casos) {
+    const path = `${this.url}/${casos.id}`;
+    return this.httpclient.put<Casos>(path, casos);
   }
+  
+
+
 }

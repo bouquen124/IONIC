@@ -1,24 +1,54 @@
+
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>usuarios</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+    usuarios
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+
+  
+    </ion-buttons>
+  
+  
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let usuario of usuarios; let index = i">
+      <ion-item>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ usuario.id }}</ion-card-subtitle>
+            <ion-card-title>{{ usuario.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+           <p>Edad:{{usuario.edad  }}</p>
+           <p>Localidad:{{ usuario.localidad }}</p>
+           
+<p>Tipo:{{ usuario.c_tipo_id }}</p>
 
-<ion-card    *ngFor="let usuario of usuarios">
-  <ion-card-header>
-    <ion-card-subtitle>{{ usuario.id }}</ion-card-subtitle>
-    <ion-card-title>{{ usuario.nombre }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-   <p>Edad: {{ usuario.edad }}</p>
-   <p>Localidad: {{ usuario.localidad }}</p>
-   <p>Tipo: {{ usuario.c_tipo_id }}</p>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-checkbox [checked]="usuario.completed" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteUsuarios(usuario.id, index)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
 
-  </ion-card-content>
-</ion-card>
-
-
-
+        <ion-item-option (click)="updateUsuarios()" color="success">
+          <ion-icon name="arrow-up-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
+
+

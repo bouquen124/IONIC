@@ -7,20 +7,31 @@
       <ion-button (click)="openAlert()">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
+
+  
     </ion-buttons>
+  
+  
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let estado of estados;">
+    <ion-item-sliding *ngFor="let estado of estados; let index = i">
       <ion-item>
-        <ion-label>{{ estado.nombre }}</ion-label>
+        <ion-label>Nombre: {{ estado.nombre }}</ion-label>
+        <ion-label>Descripcion: {{ estado.descripcion }}</ion-label>
+        
         <ion-checkbox [checked]="estado.completed" slot="start"></ion-checkbox>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="deleteTask(task.id, index)" color="danger">
+        <ion-item-option (click)="deleteEstado(estado.id, index)" color="danger">
           <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+
+        <ion-item-option (click)="updateEstado()" color="success">
+          <ion-icon name="arrow-up-circle-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options> 
     </ion-item-sliding>

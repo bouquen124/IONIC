@@ -60,6 +60,7 @@ placeholder:'aqui estado'
           text: 'Crear',
           handler: (data) => {
           this.createEstado(data.nombre,data.descripcion)
+      
 
           }
         }
@@ -82,9 +83,6 @@ placeholder:'aqui estado'
   
     );
 
- 
-
-
   }
 
   createEstado(nombre: string,descripcion:string) {
@@ -99,9 +97,64 @@ placeholder:'aqui estado'
       this.estados.unshift(newestado);
     });
    
-  } 
-
-
-
-
   }
+  
+  
+
+  deleteEstado(id:number, index: number) {
+    this.estado_service.deleteEstado(id)
+    .subscribe((id) => {
+      this.estados.splice(index, 1);
+      this.presentToast('Su tarea fue eliminada correctamente');
+    });
+
+  
+  }
+////////////////////////
+
+updateEstado(){
+const estado ={
+
+id:4,
+nombre:'este2',
+descripcion:'este es dos'
+};
+
+this.estado_service.updateEstado(estado).subscribe(todo=>{
+
+console.log(todo);
+
+});
+
+}
+
+  
+//////////////////////////
+
+
+
+
+
+  async presentToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 3000
+    });
+    await toast.present();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Cargando..',
+      duration: 2000
+    });
+    await loading.present();
+    return loading;
+  }
+
+
+}
+
+
+
+  

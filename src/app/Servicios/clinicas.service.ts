@@ -1,40 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Estado } from './Estado';
-
-
+import { Clinicas } from './clinica';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EstadoService {
-
+export class ClinicasService {
 
   constructor(private httpclient :HttpClient) { }
-  url ='http://127.0.0.1:8000/api/c_estados';
 
 
-  getEstados() {
+  url ='http://127.0.0.1:8000/api/c_clinicas';
+
+
+  getClinicas() {
     const path = `${this.url}`;
     return this.httpclient.get <any>(path);
   }
 
-  createEstado(estado: Estado) {
+
+  createClinica(Clinica: Clinicas) {
     const path = `${this.url}`;
-    return this.httpclient.post<Estado>(path, estado); 
+    return this.httpclient.post<Clinicas>(path, Clinica); 
   
   }
-
-
-  deleteEstado(id: number) {
+  deleteClinicas(id: number) {
     const path = `${this.url}/${id}`;
     return this.httpclient.delete(path);
   }
 
 
- 
-  updateEstado(estado: Estado) {
-    const path = `${this.url}/${estado.id}`;
-    return this.httpclient.put<Estado>(path, estado);
+  updateClinicas(clinicas: Clinicas) {
+    const path = `${this.url}/${clinicas.id}`;
+    return this.httpclient.put<Clinicas>(path, clinicas);
   }
+  
 }
