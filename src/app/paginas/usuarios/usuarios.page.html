@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card    *ngFor="let usuario of usuarios">
+  <ion-card-header>
+    <ion-card-subtitle>{{ usuario.id }}</ion-card-subtitle>
+    <ion-card-title>{{ usuario.nombre }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+   <p>Edad: {{ usuario.edad }}</p>
+   <p>Localidad: {{ usuario.localidad }}</p>
+   <p>Tipo: {{ usuario.c_tipo_id }}</p>
+
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

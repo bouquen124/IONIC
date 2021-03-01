@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>TIPOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-content>
+    <ion-card  *ngFor="let tipo of tipos">
+      <ion-card-header >
+        <ion-card-subtitle>{{ tipo.id }}</ion-card-subtitle>
+        <ion-card-title>{{ tipo.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+    {{ tipo.descripcion }}
+      </ion-card-content>
+    </ion-card>
+  
+
+
+
+    <form class="card m-3">
+      <input 
+              class="p-2 mb-2" placeholder="nombre"/>
+    
+      <input  
+              class="p-2 mb-2" placeholder="descripcion"/>
+    
+      <button (click)="addEstado()" class="btn btn-success">
+            Aceptar
+      </button>
+    </form>
+    
+  </ion-content>
+
+ 
+
+</ion-content>

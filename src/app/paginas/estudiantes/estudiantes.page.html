@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>estudiantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card  *ngFor="let estudiante of estudiantes">
+    <ion-card-header>
+      <ion-card-subtitle>{{ estudiante.id }}</ion-card-subtitle>
+      <ion-card-title>{{ estudiante.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Correo:{{ estudiante.correo }}</p>
+  <p>Telefono:{{ estudiante.telefono }}</p>
+  <p>Localidad: {{ estudiante.localidad }}</p>
+  <p>Clinica:{{  estudiante.c_clinica_id}}</p>
+  <p>Profesional {{ estudiante.c_profesional_id }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

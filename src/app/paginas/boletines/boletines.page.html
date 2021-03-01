@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Boletines</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card  *ngFor="let boletin of boletines">
+  <ion-card-header>
+    <ion-card-subtitle>{{ boletin.titulo }}</ion-card-subtitle>
+    <ion-card-title>{{ boletin.subtitulo }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+   <p>Autor:{{boletin.autor }} Profesional:{{boletin.c_profesional_id }}  </p>
+   <p>{{ boletin.contenido }}</p>
+
+
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>

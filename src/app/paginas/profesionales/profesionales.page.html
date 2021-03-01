@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profesionales</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card  *ngFor="let profesional of profesionales">
+  <ion-card-header>
+    <ion-card-subtitle>{{ profesional.id }}</ion-card-subtitle>
+    <ion-card-title>{{ profesional.nombre }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>Correo:{{ profesional.correo }}</p>
+<p>Telefono:{{ profesional.telefono }}</p>
+<p>Localidad: {{ profesional.localidad }}</p>
+<p>Clinica:{{  profesional.c_clinica_id}}</p>
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

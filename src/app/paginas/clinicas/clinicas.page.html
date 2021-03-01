@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Clinicas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card   *ngFor="let clinica of clinicas">
+  <ion-card-header>
+    <ion-card-subtitle>{{ clinica.id }}</ion-card-subtitle>
+    <ion-card-title>{{ clinica.nombre }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+   <p>telefono: {{ clinica.telefono }}</p>
+   <p>direccion: {{ clinica.direccion }}</p>
+   <p>Correo:{{ clinica.correo }}</p>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>
