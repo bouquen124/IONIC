@@ -1,31 +1,28 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Estados</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Tareas
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-<ion-card *ngFor="let estado of estados">
-  <ion-card-header>
-    <ion-card-subtitle>{{ estado.id }}</ion-card-subtitle>
-    <ion-card-title>{{ estado.nombre }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
- <p>{{ estado.descripcion }}</p>
-  </ion-card-content>
-</ion-card>
-
-
-<div>
-  <input [(ngModel)]="estado.nombre"  type="text" id="nombre"  class="p-2 mb-2" placeholder="nombre"/>
-
-  <input [(ngModel)]="estado.descripcion"   type="text" id="descripcion" class="p-2 mb-2" placeholder="descripcion"/>
-
-  <button (click)="SaveEstado()" class="btn  btn-primary">Guardar</button>
-  
-</div>
-
-
-
+  <ion-list>
+    <ion-item-sliding *ngFor="let estado of estados;">
+      <ion-item>
+        <ion-label>{{ estado.nombre }}</ion-label>
+        <ion-checkbox [checked]="estado.completed" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteTask(task.id, index)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

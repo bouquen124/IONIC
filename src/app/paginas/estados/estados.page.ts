@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {FormControl} from '@angular/forms';
+
 import {  Estado } from '../../Servicios/Estado';
 import { EstadoService } from 'src/app/Servicios/estado.service';
-import { error } from '@angular/compiler/src/util';
+import { AlertController, ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-estados',
@@ -11,11 +11,12 @@ import { error } from '@angular/compiler/src/util';
   styleUrls: ['./estados.page.scss'],
 })
 export class EstadosPage implements OnInit {
-  estado:Estado={
-    nombre:null,
-    descripcion:null
-      };
-  constructor(public http : HttpClient, private estadoservice: EstadoService) { 
+
+  estados:any[];
+  constructor(private estado_service:EstadoService,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController) { 
 
 
 
@@ -23,32 +24,83 @@ export class EstadosPage implements OnInit {
 
   ngOnInit() {
 
+   
+    this.getEstados();
 
-    this.index();
+
+  }
+  async openAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Nueva estado!',
+      inputs: [
+        {
+          name: 'nombre',
+
+          type: 'text',
+
+          placeholder: 'aqui la estado'
+        },{
+
+name:'descripcion',
+type:'text',
+placeholder:'aqui estado'
+
+
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Crear',
+          handler: (data) => {
+          this.createEstado(data.nombre,data.descripcion)
+
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 
+  getEstados(){
 
-  
-estados: any=[];
 
-index(){
-  this.http.get<any>('http://127.0.0.1:8000/api/c_estados').subscribe(r=>{
+    this.estado_service.getEstados()
+    .subscribe(r => {
+      console.log(r.data);
 
-  console.log(r.data);
   this.estados= r.data;
-
-  });
+     
+    }
   
-}
-SaveEstado(){
-/*   this.estadoservice.save(this.estado).subscribe(data=>{
-alert('pelicula guardada');
-console.log(data);
+    );
 
-  }); */
-  console.log(this.estado);
-}
+ 
+
+
+  }
+
+  createEstado(nombre: string,descripcion:string) {
+    const estado = {
+    
+      nombre,
+      descripcion,
+  
+    };
+    this.estado_service.createEstado(estado)
+    .subscribe((newestado) => {
+      this.estados.unshift(newestado);
+    });
+   
+  } 
+
 
 
 

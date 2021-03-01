@@ -4,7 +4,6 @@ import { Estado } from './Estado';
 
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,23 +11,18 @@ export class EstadoService {
 
 
   constructor(private httpclient :HttpClient) { }
-  url ='http://127.0.0.1:8000/api';
-
-/* save( estado:Estado){
+  url ='http://127.0.0.1:8000/api/c_estados';
 
 
-  const headers= new HttpHeaders()
-  .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*');
+  getEstados() {
+    const path = `${this.url}`;
+    return this.httpclient.get <any>(path);
+  }
 
-  return this.httpclient.get(this.url + '/estados' + estado +  { 'headers': headers })
+  createEstado(estado: Estado) {
+    const path = `${this.url}`;
+    return this.httpclient.post<Estado>(path, estado); 
+  
+  }
  
-
-
-
-}
-
- */
-
-
 }
